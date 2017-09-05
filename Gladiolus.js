@@ -18,12 +18,8 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
-	
-  if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-
-  if (message.content.startsWith(config.prefix + "ping")) {
-    message.channel.send("pong!");
-  } 
+  	
+ if (!message.content.startsWith(config.prefix) || message.author.bot) return;
   
  if(message.content.startsWith(config.prefix + "prefix")) {
   // Gets the prefix from the command (eg. "!prefix +" it will take the "+" from it)
@@ -34,6 +30,13 @@ client.on("message", (message) => {
 
   // Now we have to save the file.
   fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+	 
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+	 
+  if(command === 'ping') {
+  message.channel.send('Pong!');
+} 
 }
 });
 
