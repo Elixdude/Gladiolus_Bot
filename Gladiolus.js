@@ -18,12 +18,17 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
 	
   if (!message.content.startsWith(config.prefix) || message.author.bot) return;
-
-  if (message.content.startsWith(config.prefix + "ping")) {
-    message.channel.send("pong!");
-  } 
+  
+  if(command === 'ping') {
+  message.channel.send('Pong!');
+  } else 
+  if (command === 'blah') {
+  message.channel.send('Meh.');
+}
   
  if(message.content.startsWith(config.prefix + "prefix")) {
   // Gets the prefix from the command (eg. "!prefix +" it will take the "+" from it)
